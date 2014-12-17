@@ -4,6 +4,7 @@
  */
 package org.upasx.lichee.model;
 
+import java.util.List;
 import java.util.Map;
 
 import com.google.gson.Gson;
@@ -24,11 +25,14 @@ public class MonitorItemConfig {
 
 	public String command;
 
-	public Map<String, String> properties;
+	public Map<String, List<AlarmEntity>> properties;
 
 	@Override
 	public String toString() {
 		return new Gson().toJson(this);
 	}
 
+	public static MonitorItemConfig fromString(String json) {
+		return new Gson().fromJson(json, MonitorItemConfig.class);
+	}
 }

@@ -1,0 +1,38 @@
+/*
+ *  Copyright@2014 GageIn Inc. All rights reserved.
+ *  Email : hust.xzj@gmail.com 
+ */
+package org.upasx.lichee.server;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Component;
+import org.upasx.lichee.server.zk.HostsPathHandler;
+import org.upasx.lichee.zookeeper.LicheeZooKeeper;
+
+/**
+ * @author Xiong Zhijun
+ * @date Nov 22, 2014
+ *
+ */
+@Component
+@Lazy(false)
+public class HostsManager {
+	@Autowired
+	@Qualifier("hosts.path")
+	private String hostsPath;
+	@Autowired
+	private LicheeZooKeeper licheeZooKeeper;
+	@Autowired
+	private HostsPathHandler handler;
+
+	@PostConstruct
+	public void init() {
+		licheeZooKeeper.initPath(hostsPath);
+		handler.handle(hostsPath);
+	}
+
+}

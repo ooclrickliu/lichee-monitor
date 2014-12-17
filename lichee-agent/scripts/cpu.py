@@ -1,0 +1,6 @@
+import psutil
+import json
+cpu_percent = psutil.cpu_times_percent(interval=1, percpu=False)
+
+json = json.dumps(cpu_percent._asdict())
+print(json)

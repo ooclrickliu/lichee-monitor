@@ -1,0 +1,26 @@
+[ {
+	"monitorItemName" : "cpu",
+	"cron" : "5/10 * * * * ?",
+	"command" : "cpu.py",
+	"monitorType" : "cpu",
+	"properties" : {
+		"idle" : [
+			{
+				"name" : "min",
+				"value" : "90"
+			}
+		]
+	}
+}, {
+	"monitorItemName" : "memory",
+	"cron" : "0/10 * * * * ?",
+	"command" : "memory.py",
+	"monitorType" : "memory"
+}, {
+	"monitorItemName" : "disk",
+	"cron" : "0/10 * * * * ?",
+	"command" : "disk.py",
+	"monitorType" : "disk"
+}
+
+]
